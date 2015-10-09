@@ -1,4 +1,4 @@
-package com.test.customer;
+package com.customer;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.springframework.util.StringUtils;
 
 
 /**
@@ -22,7 +24,7 @@ public class Customer implements Serializable{
     @GeneratedValue
 	private Long 	id;
 	private String 	firstName;
-	private String 	lastNeme;
+	private String 	lastName;
 	private String 	userName;
 	private String 	password;
 	private Date 	dateOfBirth;
@@ -40,11 +42,11 @@ public class Customer implements Serializable{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastNeme() {
-		return lastNeme;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastNeme(String lastNeme) {
-		this.lastNeme = lastNeme;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getUserName() {
 		return userName;
@@ -63,6 +65,27 @@ public class Customer implements Serializable{
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+	
+	/**
+	 * Costumers full name
+	 * @return firstName + lastName, else Nobody
+	 */
+	public String getFullName() {
+		
+		String fullName = "Nobody";
+		
+		if(!StringUtils.isEmpty(this.firstName)){
+			fullName = this.firstName;
+		}
+		if(!StringUtils.isEmpty(this.lastName)){
+			if(fullName.equals("Nobody"))
+				fullName = this.lastName;
+			else
+				fullName += this.lastName;
+		}
+		
+		return fullName;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.test.customer;
+package com.customer;
 
 import org.junit.Test;
 
