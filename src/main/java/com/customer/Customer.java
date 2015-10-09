@@ -3,28 +3,47 @@ package com.customer;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.QueryHint;
+import javax.persistence.Table;
 
 import org.springframework.util.StringUtils;
 
 
 /**
- * The main and the only object
+ * The main and the only object     
  * @author reedlaa
  *
  */
 @Entity
+@Table(name = "customer")
+@NamedQueries({
+    @NamedQuery(
+            name = Customer.GET_ALL,
+            query = "SELECT e FROM Customer e"),
+    @NamedQuery(
+            name = Customer.BY_ID,
+            query = "SELECT e FROM Customer e WHERE e.id = :id"),
+})
 public class Customer implements Serializable{
 
 	private static final long serialVersionUID = -7024947819054360655L;
 	
+	public final static String GET_ALL = "com.customer.Customer.GET_ALL";
+    public final static String BY_ID = "com.customer.Customer.BY_ID";
+	
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long 	id;
 	private String 	firstName;
 	private String 	lastName;
+	@Column(nullable = false)
 	private String 	userName;
 	private String 	password;
 	private Date 	dateOfBirth;

@@ -1,0 +1,46 @@
+body {
+	
+  background: #F6F6F6;
+  color: #333;
+  font-size: 11px;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-weight: normal;
+  text-align: center;
+}
+
+.grid_6, .grid_8, grid_10, grid_12 {
+	
+	border-radius: 25px;
+	filter: blur(10px);
+	text-align: center;
+	background: #fff;
+}
+
+.grid_12 {
+
+	min-height: 300px;
+	padding-top: 30px;
+}
+
+.grid_10 {
+
+	min-height: 300px;
+	padding-top: 30px;
+}
+
+.center {
+	text-align: center;
+}
+
+.paddingTop20{
+	padding-top: 20px;
+}
+
+.paddingTop90{
+	padding-top: 90px;
+}
+
