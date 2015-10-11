@@ -17,7 +17,7 @@
 					<input type="button" id="addButton" style="float: left;" value="Add new customer"/>
 
 					 	
-					<form:form action="<c:url value='/j_spring_security_check' />" method='POST'>
+					<form:form action="logout">
 						<input  id="logOutButton" type="submit"  style="float: right;" value="Logout"/>
 					</form:form>
 				</div>

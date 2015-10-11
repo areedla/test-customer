@@ -12,8 +12,8 @@ jQuery(document ).ready(function() {
 	
 	jQuery("#customersList").on( "click", "#logOutButton", function(e) {
 		// TODO: remove this and add working out logging
-		alert("In this developement phase it's not possible to log out!");
-		e.preventDefault();
+		// alert("In this developement phase it's not possible to log out!");
+		//e.preventDefault();
 	});
 	
 	jQuery("#customersList").on( "click", "#deleteButton", function(e) {

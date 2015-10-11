@@ -12,7 +12,7 @@
 		<intercept-url pattern="/add**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
 		<intercept-url pattern="/edit**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
 		<intercept-url pattern="/saveCustomer**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
-		<logout logout-url="/" />
+		<logout logout-url="/logout" logout-success-url="/"/>
 	</http>
 
 	<authentication-manager>
