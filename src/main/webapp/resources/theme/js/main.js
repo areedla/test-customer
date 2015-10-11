@@ -2,12 +2,12 @@
 jQuery(document ).ready(function() {
 	
 	jQuery("#customersList").on( "click", "#addButton", function() {
-		showDialog("/Customer/addEdit?id=");
+		showDialog("addEdit?id=");
 	});
 	
 	
 	jQuery("#customersList").on( "click", "#editButton", function() {
-		showDialog("/Customer/addEdit?id=" + jQuery(this).attr("customerId"));
+		showDialog("addEdit?id=" + jQuery(this).attr("customerId"));
 	});
 	
 	jQuery("#customersList").on( "click", "#logOutButton", function(e) {
@@ -63,7 +63,7 @@ function showDialog(url){
         	});
         	
         	
-        	jQuery("#saveAction").attr("action", "/Customer/saveCustomer?_csrf=" + jQuery("meta[name='_csrf']").attr("content"));
+        	jQuery("#saveAction").attr("action", "saveCustomer?_csrf=" + jQuery("meta[name='_csrf']").attr("content"));
         	
         },
         dataType : 'html'

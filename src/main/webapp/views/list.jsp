@@ -47,7 +47,7 @@
 							          	<td><c:out value="${customer.getDateOfBirthString()}"/></td>
 							          	<td class="textCenter"><button id="editButton" type="button" customerId="${customer.id}">Edit</button></td>
 							          	<td class="textCenter" >
-							          		<form action="/Customer/deleteCustomer" style="padding-top:14px">
+							          		<form action="deleteCustomer" style="padding-top:14px">
 							          			<input type="hidden" name="id" value="<c:out value='${customer.id}'/>"/>
 							          			<input class="center" id="deleteButton" type="submit" value="Delete"/>
 							          		</form>
