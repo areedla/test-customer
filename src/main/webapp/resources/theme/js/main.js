@@ -1,15 +1,14 @@
-jQuery("#customersList").on( "click", "addButton", function() {
-	console.log(jQuery(this).attr("customerId"));
-});
 
-
-jQuery("#customersList").on( "click", "editButton", function() {
-	console.log(jQuery(this).attr("customerId"));
-});
-
-
-jQuery("#customersList").on( "click", "addButton", function() {
-	console.log(jQuery(this).attr("customerId"));
+jQuery(document ).ready(function() {
+	
+	jQuery("#customersList").on( "click", "#addButton", function() {
+		showDialog("/Customer/addEdit?id=");
+	});
+	
+	
+	jQuery("#customersList").on( "click", "#editButton", function() {
+		showDialog("/Customer/addEdit?id=" + jQuery(this).attr("customerId"));
+	});
 });
 
 function showDialog(url){
@@ -29,6 +28,7 @@ function showDialog(url){
         
         success : function(data) {
         	jQuery("#dialog").html(data);
+        	
         	jQuery("#dialog").dialog({
         		modal: true,
         	});
@@ -42,6 +42,16 @@ function showDialog(url){
                     at: 'center'
                 }
             });
+        	
+        	jQuery("#dateOfBirth").datepicker({
+        		  dateFormat: "dd.MM.yyyy",
+        		  showButtonPanel: true
+        	});
+        	
+        	//jQuery("#csrf").attr("value", jQuery("meta[name='_csrf']").attr("content"));
+        	//jQuery("#csrf").attr("name", jQuery("meta[name='_csrf_header']").attr("content"));
+        	jQuery("#saveAction").attr("action", "/Customer/saveCustomer?_csrf=" + jQuery("meta[name='_csrf']").attr("content"));
+        	
         },
         dataType : 'html'
     });

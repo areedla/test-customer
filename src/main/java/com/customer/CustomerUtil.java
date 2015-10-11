@@ -7,7 +7,7 @@ package com.customer;
  */
 public class CustomerUtil {
 	
-	static String happinessInWords(int scale){
+	public static String happinessInWords(int scale){
 		
 		switch(scale){
 			case 1:

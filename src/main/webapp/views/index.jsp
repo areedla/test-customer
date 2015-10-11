@@ -8,7 +8,7 @@
 		<h2>${helloMessage}</h2>
 		
 		<div class="container_12">
-			<div class="grid_12">
+			<div class="grid_12 center height300">
 				<div class="center paddingTop90">
 					<form action="list">
 					    <button  type="submit">Add and edit customers</button>

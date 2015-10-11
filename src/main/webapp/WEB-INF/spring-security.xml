@@ -11,14 +11,15 @@
 		<intercept-url pattern="/list**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
 		<intercept-url pattern="/add**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
 		<intercept-url pattern="/edit**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
-		<intercept-url pattern="/save**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<intercept-url pattern="/saveCustomer**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<logout logout-url="/" />
 	</http>
 
 	<authentication-manager>
 	  <authentication-provider>
 	    <user-service>
-		<user name="user" password="12345" authorities="ROLE_USER" />
-		<user name="admin" password="12345" authorities="ROLE_ADMIN" />
+		<user name="user" password="123" authorities="ROLE_USER" />
+		<user name="admin" password="123" authorities="ROLE_ADMIN" />
 	    </user-service>
 	  </authentication-provider>
 	</authentication-manager>

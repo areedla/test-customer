@@ -1,4 +1,4 @@
- package com.customer;
+ package com.customer.service;
 
 import java.util.Date;
 import java.util.List;
@@ -8,12 +8,20 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.customer.CustomerUtil;
+import com.customer.domain.Customer;
+
 
 /**
  * Business logic whit customer
  * @author reedlaa
  *
  */
+@Component
+@Transactional(readOnly=false)
 public class CustomerService {
 	
 	private final static Logger logger = LogManager.getLogger();
@@ -59,36 +67,38 @@ public class CustomerService {
 	 * 
 	 * @return
 	 */
-	public boolean saveCustomer(Long id, String firstName, String lastName, 
+	public String saveCustomer(Long id, String firstName, String lastName, 
 			String userName, String password, Date dateOfBirth){
 		
-		Customer custumer;
+		Customer customer;
 		
 		try{
 			if(id == null){
-				custumer = new Customer();
+				customer = new Customer();
 			}else{
-				custumer = (Customer) entityManager
+				customer = (Customer) entityManager
 	            	.createNamedQuery(Customer.BY_ID)
 	            	.setParameter("id", id).getSingleResult();
 			}
 			
-			custumer.setFirstName(firstName);
-			custumer.setLastName(lastName);
-			custumer.setUserName(userName);
-			custumer.setPassword(password);
-			custumer.setDateOfBirth(dateOfBirth);
+			customer.setFirstName(firstName);
+			customer.setLastName(lastName);
+			customer.setUserName(userName);
+			customer.setPassword(password);
+			customer.setDateOfBirth(dateOfBirth);
 			
-			this.entityManager.persist(custumer);
+			this.entityManager.persist(customer);
 			this.entityManager.flush();
+			
+			logger.debug("Added new customer: " + customer.getUserName());
 		}
 		catch(Exception e){
 			
-			logger.error("Error on saving custumer! " + e.getMessage());
-			return false;
+			logger.error("Error on saving customer! " + e.getMessage());
+			return "Error on saving customer! " + e.getMessage();
 		}
 		
-		return true;
+		return "";
 	}
 	
 	/**
@@ -97,7 +107,18 @@ public class CustomerService {
 	 */
 	public boolean deleteCustomer(Long id){
 		
+		try{
+		Customer customer = (Customer) entityManager
+            	.createNamedQuery(Customer.BY_ID)
+            	.setParameter("id", id).getSingleResult();
 		
+		this.entityManager.remove(customer);
+		this.entityManager.flush();
+		}
+		catch(Exception e){
+			logger.error("Error on deleting customer! " + e.getMessage());
+			return false;
+		}
 		
 		return true;
 	}

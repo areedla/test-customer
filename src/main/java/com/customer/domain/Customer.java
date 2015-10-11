@@ -1,6 +1,8 @@
-package com.customer;
+package com.customer.domain;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,19 +12,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.QueryHint;
 import javax.persistence.Table;
 
 import org.springframework.util.StringUtils;
 
 
 /**
- * The main and the only object     
+ * The main and the only object    
+ * TODO: constraints.. a'la unique username 
  * @author reedlaa
  *
  */
 @Entity
-@Table(name = "customer")
 @NamedQueries({
     @NamedQuery(
             name = Customer.GET_ALL,
@@ -35,8 +36,8 @@ public class Customer implements Serializable{
 
 	private static final long serialVersionUID = -7024947819054360655L;
 	
-	public final static String GET_ALL = "com.customer.Customer.GET_ALL";
-    public final static String BY_ID = "com.customer.Customer.BY_ID";
+	public final static String GET_ALL = "com.customer.domain.Customer.GET_ALL";
+    public final static String BY_ID = "com.customer.domain.Customer.BY_ID";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,6 +82,13 @@ public class Customer implements Serializable{
 	}
 	public Date getDateOfBirth() {
 		return dateOfBirth;
+	}
+	public String getDateOfBirthString() {
+		if(dateOfBirth == null) 
+			return "";
+		// TODO: date utils
+		Format formatter = new SimpleDateFormat("dd.MM.yyyy");
+		return formatter.format(dateOfBirth);
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
