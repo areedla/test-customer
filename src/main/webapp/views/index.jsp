@@ -8,14 +8,14 @@
 		<h2>${helloMessage}</h2>
 		
 		<div class="container_12">
-			<div class="grid_12 center height300">
-				<div class="center paddingTop90">
+			<div class="grid_12 center textCenter height300">
+				<div class="center textCenter paddingTop90">
 					<form action="list">
 					    <button  type="submit">Add and edit customers</button>
 					</form>
 				</div>
 				<div class="clear"></div>
-				<div class="center paddingTop20">Only authorized persons can enter.</div>
+				<div class="center textCenter paddingTop20">Only authorized persons can enter.</div>
 				<!-- the authetication system is under developement -->
 			</div>
 		</div>

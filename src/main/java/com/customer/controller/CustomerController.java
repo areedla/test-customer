@@ -71,7 +71,7 @@ public class CustomerController {
 		
 		// result for ajax request, TODO: render view, commandobjects, validation...
 		// next version like: http://examples.javacodegeeks.com/enterprise-java/hibernate/hibernate-validator-example/ .. or somting smiler
-		String result = "Add or edit customer.<div class='clear'></div>'";
+		String result = "<div class='lightYellow'> Add or edit customer.<div class='clear'></div>'";
 		result += "";
 		result += "<form  id='saveAction' action='/Customer/saveCustomer' method='POST'>";
 		result += "<input type='hidden' name='id' value='" + id + "'/>";
@@ -88,15 +88,15 @@ public class CustomerController {
 		result += "<td><input type='text' name='userName' value='" + userName + "'/></td>";
 		result += "</tr><tr>";
 		result += "<td><form:label path='password'>Password:</form:label></td>";
-		result += "<td><input type='text' name='password' path='password' value='" + password + "'/></td>";
+		result += "<td><input type='password' name='password' path='password' value='" + password + "'/></td>";
 		result += "</tr><tr>";
 		result += "<td><form:label path='dateOfBirth'>Date of birth:</form:label></td>";
-		result += "<td><input type='text' name='dateOfBirth' value='" + dateOfBirth + "'/></td>";
+		result += "<td><input type='text' id='dateOfBirth' name='dateOfBirth' value='" + dateOfBirth + "'/></td>";
 		result += "</tr><tr>";
 		result += "";
 		result += "<td><input type='submit' id='customerSaveButton' name='customerSaveButton' value='Save' style='float:right'/></td>";
 		result += "</tr></table>";
-		result += "</form>";
+		result += "</form></div>";
 		// result + del button
 
 		return result;
@@ -121,6 +121,10 @@ public class CustomerController {
 		
 		
 		String result = "";
+		if(userName == null || userName.trim().equals("")){
+			result = "Username must by set!";
+			return "redirect:/list?msg=" + result;
+		}
 		
 		// TODO: utils class for date manipulation
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
@@ -147,15 +151,19 @@ public class CustomerController {
 	
 	
 	@RequestMapping("/deleteCustomer")
-	public String deleteCustomer(@RequestParam(value = "id", required = false) String id) {
+	public String deleteCustomer(@RequestParam(value = "id", required = true) String id) {
 		
-		boolean result = customerService.deleteCustomer(Long.parseLong(id));
-		
+		boolean result = false;
+		Long customerId = null;
+		if(id != null && !id.equals("")){
+			customerId = Long.parseLong(id);
+			result = customerService.deleteCustomer(customerId);
+		}
 		//TODO: useful messages to user
 		
 		String msg = "";
 		if(result == false) msg = "Error on delete! Search help!";
 		
-		return "redirect:/list?msg=" + result;
+		return "redirect:/list?msg=" + msg;
 	}
 }

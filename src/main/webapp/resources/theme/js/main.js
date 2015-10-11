@@ -10,8 +10,13 @@ jQuery(document ).ready(function() {
 		showDialog("/Customer/addEdit?id=" + jQuery(this).attr("customerId"));
 	});
 	
+	jQuery("#customersList").on( "click", "#logOutButton", function(e) {
+		// TODO: remove this and add working out logging
+		alert("In this developement phase it's not possible to log out!");
+		e.preventDefault();
+	});
 	
-	jQuery("#customersList").on( "click", "#deleteButton", function() {
+	jQuery("#customersList").on( "click", "#deleteButton", function(e) {
 		var result = window.confirm('Are you sure you want to do it?');
         if (result == false) {
             e.preventDefault();
@@ -53,7 +58,7 @@ function showDialog(url){
             });
         	
         	jQuery("#dateOfBirth").datepicker({
-        		  dateFormat: "dd.MM.yyyy",
+        		  dateFormat: "dd.mm.yy",
         		  showButtonPanel: true
         	});
         	
