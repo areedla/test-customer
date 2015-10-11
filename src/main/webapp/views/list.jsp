@@ -26,8 +26,8 @@
 			<div class="grid_12 height300">
 				
 				<c:if test="${allCustomers != null and allCustomers.size() > 0}"> 
-					<div class="grid_12 center">
-						<table>
+					<div class="grid_12 center lightYellow">
+						<table class="center">
 			       			<thead>
 			         			<tr>
 			          				<th> First Name </th>

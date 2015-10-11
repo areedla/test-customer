@@ -9,6 +9,15 @@ jQuery(document ).ready(function() {
 	jQuery("#customersList").on( "click", "#editButton", function() {
 		showDialog("/Customer/addEdit?id=" + jQuery(this).attr("customerId"));
 	});
+	
+	
+	jQuery("#customersList").on( "click", "#deleteButton", function() {
+		var result = window.confirm('Are you sure you want to do it?');
+        if (result == false) {
+            e.preventDefault();
+        };
+	});
+	 
 });
 
 function showDialog(url){
@@ -48,8 +57,7 @@ function showDialog(url){
         		  showButtonPanel: true
         	});
         	
-        	//jQuery("#csrf").attr("value", jQuery("meta[name='_csrf']").attr("content"));
-        	//jQuery("#csrf").attr("name", jQuery("meta[name='_csrf_header']").attr("content"));
+        	
         	jQuery("#saveAction").attr("action", "/Customer/saveCustomer?_csrf=" + jQuery("meta[name='_csrf']").attr("content"));
         	
         },

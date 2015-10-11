@@ -70,6 +70,7 @@ public class CustomerController {
 		}
 		
 		// result for ajax request, TODO: render view, commandobjects, validation...
+		// next version like: http://examples.javacodegeeks.com/enterprise-java/hibernate/hibernate-validator-example/ .. or somting smiler
 		String result = "Add or edit customer.<div class='clear'></div>'";
 		result += "";
 		result += "<form  id='saveAction' action='/Customer/saveCustomer' method='POST'>";
@@ -139,13 +140,13 @@ public class CustomerController {
 			result += "Error!" + e.getMessage();
 		}
 		
-		//TODO: useful messages to user
+		//TODO: useful messages to user in dialog
 		
 		return "redirect:/list?msg=" + result;
 	}
 	
 	
-	@RequestMapping("/delete")
+	@RequestMapping("/deleteCustomer")
 	public String deleteCustomer(@RequestParam(value = "id", required = false) String id) {
 		
 		boolean result = customerService.deleteCustomer(Long.parseLong(id));
