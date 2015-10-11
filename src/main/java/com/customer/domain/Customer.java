@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.util.StringUtils;
 
 
@@ -113,6 +114,12 @@ public class Customer implements Serializable{
 		}
 		
 		return fullName;
+	}
+	
+	@Override
+	public String toString(){
+		
+		return this.id + ":" + this.userName;
 	}
 	
 }

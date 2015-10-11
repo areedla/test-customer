@@ -29,6 +29,7 @@ public class CustomerService {
 	@PersistenceContext
     protected EntityManager entityManager;
 	
+	
 	/**
 	 * How happy is customer from 1 to 5
 	 * @param scale nr. 1-5
@@ -38,6 +39,7 @@ public class CustomerService {
 		
 		return customer.getFullName() + " " + CustomerUtil.happinessInWords(scale);
 	}
+	
 	
 	/**
 	 * Customer by id
@@ -64,7 +66,13 @@ public class CustomerService {
 	
 	
 	/**
-	 * 
+	 * Saves new or old customer
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 * @param userName
+	 * @param password
+	 * @param dateOfBirth
 	 * @return
 	 */
 	public String saveCustomer(Long id, String firstName, String lastName, 
@@ -101,16 +109,18 @@ public class CustomerService {
 		return "";
 	}
 	
+	
 	/**
-	 * 
+	 * Removing customer from database
+	 * @param id
 	 * @return
 	 */
 	public boolean deleteCustomer(Long id){
 		
 		try{
-		Customer customer = (Customer) entityManager
-            	.createNamedQuery(Customer.BY_ID)
-            	.setParameter("id", id).getSingleResult();
+			Customer customer = (Customer) entityManager
+	            	.createNamedQuery(Customer.BY_ID)
+	            	.setParameter("id", id).getSingleResult();
 		
 		this.entityManager.remove(customer);
 		this.entityManager.flush();

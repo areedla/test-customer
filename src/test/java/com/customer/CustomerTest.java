@@ -1,14 +1,34 @@
 package com.customer;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.util.Date;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.customer.domain.Customer;
+import com.customer.service.CustomerService;
 
 import junit.framework.TestCase;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CustomerTest extends TestCase {
+	
+	 private Customer testCustomer;
+	
+	 @Before
+	 public void setUp() throws Exception {
+		 
+		 testCustomer = new Customer();
+		 testCustomer.setId((long) 7);
+		 testCustomer.setUserName("kala");
+	 }
+
 	
 	 @Test
 	 public void testIfTestIsWorking() {
@@ -16,6 +36,7 @@ public class CustomerTest extends TestCase {
 		 assertEquals(9, 9);
 		 //System.out.println("Yes, it works!");
 	 }
+
 	 
 	 @Test
 	 public void testCustomerAttributes() {
@@ -41,6 +62,20 @@ public class CustomerTest extends TestCase {
 	 }
 	 
 	 @Test
+	 public void testGetCustomerById(){ 
+		 
+		 //TODO: mock entityManager
+		 
+		 CustomerService mockService = mock(CustomerService.class);
+
+		 when(mockService.getCustomer((long) 7)).thenReturn(testCustomer);
+		 
+		 Customer resultCustomer = mockService.getCustomer((long) 7);
+		 assertNotNull(resultCustomer);
+		 assertEquals("kala", resultCustomer.getUserName());
+	 }
+	 
+	 @Test
 	 public void testSaveEditAndDeleteAnd() {
 		 
 		 //TODO: mock and test service methods (use Mockito or ..)
@@ -51,5 +86,9 @@ public class CustomerTest extends TestCase {
 	 public void testSomtingMore() {
 		 //TODO:
 		 assertTrue(true);
+	 }
+	 
+	 @After
+	 public void tearDown() throws Exception {
 	 }
 }
